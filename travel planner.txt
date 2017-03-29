@@ -1,0 +1,20 @@
+travel planner, jet set go, travel magic, here we go, travel buddy
+
+User will enter a destination,
+App will provide information related to entered destination.
+-picture of destination
+-weather 
+-currency/exchange rate
+-info on the language
+-tourist attractions/ cost info, details
+-hotels
+
+Utilize:
+google places api
+places api
+weather api
+exchange rate/currency api
+news api
+
+use fire base - when users search a destination - keep count of search, 
+and make a list of popular destination searches
