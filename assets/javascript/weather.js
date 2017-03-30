@@ -12,8 +12,9 @@ $("#destination-submit").on("click", function(event) {
 
 
     var APIKEY = "166a433c57516f51dfab1f7edaed8413";
-    var queryURL = "https://api.openweathermap.org/data/2.5/weather?" +
+    var queryURL = "http://api.openweathermap.org/data/2.5/weather?" +
         "q=" + city + "&units=imperial&appid=" + APIKEY;
+    console.log('queryURL ' +queryURL);
 
     //ajax request
     $.ajax({
