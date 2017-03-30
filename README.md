@@ -19,7 +19,7 @@ exchange rate/currency api
 time permitting:
 news api
 yelp api 
-flights
+flights may be
 provide conditional recommendations on items to bring depending on temp 
 
 use fire base - when users search a destination - keep count of search, 
