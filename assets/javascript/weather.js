@@ -1,7 +1,4 @@
 var city = "";
-function toTitleCase(str){
-    return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
-};
 
 $("#destination-submit").on("click", function(event) {
     event.preventDefault();
@@ -11,9 +8,9 @@ $("#destination-submit").on("click", function(event) {
     console.log('destination input ' + $("#destination-input").val().trim())
 
 
-    var APIKEY = "166a433c57516f51dfab1f7edaed8413";
-    var queryURL = "http://api.openweathermap.org/data/2.5/weather?" +
-        "q=" + city + "&units=imperial&appid=" + APIKEY;
+    var APIKEY = "bdb324a30b314e7592c232435173003";
+    var queryURL = "https://api.apixu.com/v1/current.json?key=" + APIKEY+
+        "&q=" + city;
     console.log('queryURL ' +queryURL);
 
     //ajax request
@@ -22,21 +19,26 @@ $("#destination-submit").on("click", function(event) {
         method: "GET"
     }).done(function(response) {
 
-        var weather = response.weather[0].main
-        var temp = response.main.temp
-        var humidity = response.main.humidity
-        var low = response.main.temp_min
-        var high = response.main.temp_max
+        var weather = response.current.condition.text
+        var weatherImg = response.current.condition.icon
+        var temp = response.current.temp_f
+        var humidity = response.current.humidity
+        var feelsLike = response.current.feelslike_f
+        city = response.location.name
 
         console.log(response)
         console.log('json url ' + queryURL)
 
-        city = toTitleCase(city);
+       
 
-        $("#weather").html("<div class=\"panel panel-default\"><div class=\"panel-heading panel-title\">"+city+" Weather</div>" +
-            "<div class=\"panel-body\">" +
+        $("#weather").html(
+            "<div class=\"panel panel-default\"><div class=\"panel-heading panel-title\">"+
+            city+" Weather</div>" +
+            "<div class=\"panel-body\">" + 
+            "<img src=\"https:"+weatherImg+"\">"+ "<br>"+
             "Current Weather: " + weather + "<br>" +
-            "Current Temperature: " + temp + "°F<br>" +
-            "High: " + high + "°F / Low: " + low + "°F</div></div>");
+            "Current Temperature: " + temp + "°F / " +
+            "Feels Like: " + feelsLike + "°F<br>" +
+            "Humidity: " + humidity + "</div></div>");
     });
 });
